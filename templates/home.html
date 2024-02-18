@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Foodle bc of love </title>
+    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtuaUdvuN9otpyfawVQhdcW1MXdlXkLHTC5g&usqp=CAU">
+  </head>
+  <!-- <body style=background-color:lightpink>
+    <center>
+      <h1 style=color:black>Hello Darkness my old friend
+      i've come to talk to u again</h1>
+      <h1 style=color:gray> Why is this like this </h1>
+      <h1 style=color:black> I am a computer program, I am not real, I am not alive
+      
+      </font>
+    </center>
+
+  </body> -->
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Foodel</title>
+      <style>
+          /* Optional: Add some basic styling to improve appearance */
+          body {
+              font-family: Arial, sans-serif;
+              margin: 20px;
+              background-color:pink
+          }
+
+          input[type="text"] {
+              padding: 8px;
+          }
+
+          button {
+              padding: 8px;
+              background-color: black;
+              color: white;
+              border: none;
+              cursor: pointer;
+          }
+          table {
+              border-collapse: collapse;
+              width: 100%;
+              margin-top: 20px;
+          }
+  
+          th, td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+          }
+  
+          th {
+              background-color: black;
+              color: white;
+          }
+      </style>
+  </head>
+  <body>
+
+      <label for="textInput">Enter Food:</label>
+      <input type="text" id="textInput" placeholder="I'm waiting...">
+      <label for="amountInput">Enter amount:</label>
+      <input type="text" id="amountInput" placeholder="Amount...">
+      <button onclick="submitFunction()">Submit</button>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Entry</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Entries will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        function submitFunction() {
+            var entryValue = document.getElementById("textInput").value;
+            var amountValue = document.getElementById("amountInput").value;
+
+            // Check if both entry and amount are provided
+            if (entryValue.trim() === "" || amountValue.trim() === "") {
+                alert("Please enter both entry and amount.");
+                return;
+            }
+
+            // Create a new row in the table
+            var table = document.getElementById("dataTable");
+            var tableBody = document.getElementById("tableBody");
+            var newRow = tableBody.insertRow(tableBody.rows.length);
+
+            // Insert cells in the row for entry, amount, and actions
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+
+            // Populate cells with entry and amount values
+            cell1.innerHTML = entryValue;
+            cell2.innerHTML = amountValue;
+
+            // Add buttons for increasing and decreasing the amount
+            cell3.innerHTML = '<button onclick="incrementAmount(this)">+</button>' +
+                              '<button onclick="decrementAmount(this)">-</button>';
+
+            // Clear the input fields after submitting
+            document.getElementById("textInput").value = "";
+            document.getElementById("amountInput").value = "";
+        }
+
+        function incrementAmount(button) {
+            var row = button.parentNode.parentNode;
+            var amountCell = row.cells[1];
+            var currentAmount = parseInt(amountCell.innerHTML, 10);
+            amountCell.innerHTML = currentAmount + 1;
+        }
+
+        function decrementAmount(button) {
+            var row = button.parentNode.parentNode;
+            var amountCell = row.cells[1];
+            var currentAmount = parseInt(amountCell.innerHTML, 10);
+            if (currentAmount > 0) {
+                amountCell.innerHTML = currentAmount - 1;
+            }
+        }
+    </script>
+
+  </body>
+</html>
